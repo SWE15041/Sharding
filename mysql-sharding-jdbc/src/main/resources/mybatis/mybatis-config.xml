@@ -4,7 +4,7 @@
     <settings>
         <setting name="defaultStatementTimeout" value="30"/>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
-	    <setting name="defaultEnumTypeHandler" value="org.apache.ibatis.type.EnumOrdinalTypeHandler"/>
+        <setting name="defaultEnumTypeHandler" value="org.apache.ibatis.type.EnumOrdinalTypeHandler"/>
     </settings>
     <typeAliases>
         <typeAlias alias="Integer" type="java.lang.Integer"/>

@@ -7,8 +7,6 @@ import java.util.List;
 /**
  * @author Yanni
  */
-public interface CourseService {
-    void insert(Course course);
+public interface OrderService {
 
-    List<Course> listAll();
 }

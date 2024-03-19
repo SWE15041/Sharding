@@ -2,13 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.example.mapper.CourseMapper">
+    <sql id="ColumnList">
+        cid,user_id,corder_no,cname,brief,price,status
+    </sql>
     <insert id="insert" parameterType="org.example.domain.Course">
         INSERT INTO
         t_course
-        (cid,user_id,corder_no,cname,brief,price,status)
+        <include refid="ColumnList"/>
         VALUES
         (#{cid},#{userId},#{corderNo},#{cname},#{brief},#{price},#{status})
     </insert>
+    <select id="listAll" resultType="org.example.domain.Course">
+        select
+        <include refid="ColumnList"/>
+        from t_course
+    </select>
     <!--    <select id="queryOrderInfoList" parameterType="com.snowalker.shardingjdbc.snowalker.demo.entity.OrderInfo"-->
     <!--            resultType="com.snowalker.shardingjdbc.snowalker.demo.entity.OrderInfo">-->
     <!--        select-->

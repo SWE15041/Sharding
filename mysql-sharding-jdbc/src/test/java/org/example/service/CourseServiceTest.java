@@ -31,4 +31,9 @@ class CourseServiceTest extends SpringTest {
         }
 
     }
+
+    @Test
+    void listAll(){
+        courseService.listAll();
+    }
 }
