@@ -6,6 +6,8 @@ import org.example.domain.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -24,5 +26,11 @@ class OrderMapperTest extends SpringTest {
         order.setOrderId(10086L);
         order.setUserName("admin");
         orderMapper.add(order);
+    }
+
+    @Test
+    void listAll(){
+        List<Order> orders = orderMapper.listAll();
+        orders.forEach(order -> System.out.println(order.toString()));
     }
 }
