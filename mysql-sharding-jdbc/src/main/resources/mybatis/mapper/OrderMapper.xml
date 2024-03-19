@@ -18,7 +18,7 @@
         from t_order
     </select>
 
-    <select id="queryByOrderId" parameterType="Long" resultType="org.example.domain.Course">
+    <select id="queryByOrderId" parameterType="Long" resultType="org.example.domain.Order">
         select
         t.id as id,
         t.user_id as userId,
