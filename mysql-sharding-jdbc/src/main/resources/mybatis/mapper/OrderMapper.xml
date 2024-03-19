@@ -7,9 +7,9 @@
     </sql>
 
     <insert id="add" parameterType="org.example.domain.Order">
-        INSERT INTO t_order(<include refid="ColumnList"/>)
+        INSERT INTO t_order(user_id,order_id,user_name)
         VALUES
-        ( #{id},#{userId}, #{orderId}, #{userName} )
+        (#{userId}, #{orderId}, #{userName} )
     </insert>
 
     <select id="listAll" resultType="org.example.domain.Order">

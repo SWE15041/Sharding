@@ -9,8 +9,8 @@ spring:
 #    password: root
   datasource:
     driver-class-name: org.apache.shardingsphere.driver.ShardingSphereDriver
-    url: jdbc:shardingsphere:classpath:sharding.yaml
-#    url: jdbc:shardingsphere:classpath:config_sharding_db1_table1.yaml
+#    url: jdbc:shardingsphere:classpath:sharding.yaml
+    url: jdbc:shardingsphere:classpath:config_sharding_db1_table1.yaml
 
 mybatis-plus:
   type-aliases-package: org.example.**.domain
