@@ -2,15 +2,16 @@ server:
   port: 8088
 
 spring:
-#  datasource:
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/sharding_db1?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
-#    username: root
-#    password: root
   datasource:
-    driver-class-name: org.apache.shardingsphere.driver.ShardingSphereDriver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sharding_db?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: root
+#  datasource:
+#    driver-class-name: org.apache.shardingsphere.driver.ShardingSphereDriver
 #    url: jdbc:shardingsphere:classpath:sharding.yaml
-    url: jdbc:shardingsphere:classpath:config_sharding_db1_table1.yaml
+#    url: jdbc:shardingsphere:classpath:sharding/config_sharding_db1_table1.yaml
+#    url: jdbc:shardingsphere:classpath:sharding/config_sharding_db2_table2.yaml
 
 mybatis-plus:
   type-aliases-package: org.example.**.domain

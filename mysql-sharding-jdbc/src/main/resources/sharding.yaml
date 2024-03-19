@@ -1,52 +1,46 @@
 mode:
-  # 运行模式类型。可选配置：内存模式 Memory、单机模式 Standalone、集群模式 Cluster - 目前为单机模式
   type: Standalone
 
 dataSources:
-  ds_0:
+  ds_1:
     dataSourceClassName: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/sharding_db1?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
     username: root
     password: root
-  ds_1:
-    dataSourceClassName: com.alibaba.druid.pool.DruidDataSource
-    driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/sharding_db2?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
-    username: root
-    password: root
 rules:
   - !SHARDING
-    # 库的路由
-    defaultDatabaseStrategy:
-      standard:
-        shardingColumn: order_id
-        shardingAlgorithmName: database_inline
+#    # 库的路由
+#    defaultDatabaseStrategy:
+#      standard:
+#        shardingColumn: id
+#        shardingAlgorithmName: database_inline
     # 表的路由
     tables:
       t_order:
-        actualDataNodes: ds_${0..1}.t_order_${0..1}
-        tableStrategy:
-            standard:
-              shardingColumn: order_id
-              shardingAlgorithmName: order_inline
+        actualDataNodes: ds_1.t_order_0
+#        databaseStrategy:
+#          standard: # For single sharding column scenario
+#            shardingColumn: id
+#            shardingAlgorithmName: database_inline
         keyGenerateStrategy: # Key generator strategy
           column: id
           keyGeneratorName: snowflake
-    # 路由算法
+#        tableStrategy:
+#          standard:
+#            shardingColumn: id
+#            shardingAlgorithmName: order_inline
     shardingAlgorithms:
-       # 库-路由算法 2是两个库，库的数量。库的数量用哈希模2来计算。
-      database_inline:
-        type: INLINE
-        props:
-          algorithm-expression: ds_${order_id % 2}
-      order_inline:
-        type: INLINE
-        props:
-          algorithm-expression: t_order_${order_id % 2}
+#      database_inline:
+#        type: INLINE
+#        props:
+#          algorithm-expression: ds_1
+#      order_inline:
+#        type: INLINE
+#        props:
+#          algorithm-expression: t_order_0
     keyGenerators:
       snowflake:
         type: SNOWFLAKE
 props:
   sql-show: true
-#  sql-simple: true

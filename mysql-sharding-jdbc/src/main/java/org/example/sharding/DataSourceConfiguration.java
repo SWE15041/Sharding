@@ -16,7 +16,11 @@ import java.sql.SQLException;
 public class DataSourceConfiguration {
 //    @Bean
 //    public DataSource dataSource() throws SQLException, IOException {
-//        File yamlFile = new File("sharding.yaml");
+//        String file = Thread.currentThread().getClass().getClassLoader().getResource("sharding.yaml").getFile();
+//        if (file == null) {
+//            return null;
+//        }
+//        File yamlFile = new File(file);
 //        return YamlShardingSphereDataSourceFactory.createDataSource(yamlFile);
 //    }
 }

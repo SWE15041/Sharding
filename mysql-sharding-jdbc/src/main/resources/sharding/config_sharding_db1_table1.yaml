@@ -8,29 +8,29 @@ dataSources:
     url: jdbc:mysql://localhost:3306/sharding_db1?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
     username: root
     password: root
-#rules:
-#  - !SHARDING
-##    # 库的路由
+rules:
+  - !SHARDING
+#    # 库的路由
 #    defaultDatabaseStrategy:
 #      standard:
 #        shardingColumn: id
 #        shardingAlgorithmName: database_inline
-#    # 表的路由
-#    tables:
-#      t_order:
-#        actualDataNodes: ds_1.t_order
+    # 表的路由
+    tables:
+      t_order:
+        actualDataNodes: ds_1.t_order_1
 #        databaseStrategy:
 #          standard: # For single sharding column scenario
 #            shardingColumn: id
 #            shardingAlgorithmName: database_inline
-#        keyGenerateStrategy: # Key generator strategy
-#          column: id
-#          keyGeneratorName: snowflake
+        keyGenerateStrategy: # Key generator strategy
+          column: id
+          keyGeneratorName: snowflake
 #        tableStrategy:
 #          standard:
 #            shardingColumn: id
 #            shardingAlgorithmName: order_inline
-#    shardingAlgorithms:
+    shardingAlgorithms:
 #      database_inline:
 #        type: INLINE
 #        props:
@@ -38,9 +38,9 @@ dataSources:
 #      order_inline:
 #        type: INLINE
 #        props:
-#          algorithm-expression: t_order
-#    keyGenerators:
-#      snowflake:
-#        type: SNOWFLAKE
+#          algorithm-expression: t_order_0
+    keyGenerators:
+      snowflake:
+        type: SNOWFLAKE
 props:
   sql-show: true
