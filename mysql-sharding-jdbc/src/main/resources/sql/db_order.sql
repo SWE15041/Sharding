@@ -1,4 +1,7 @@
 CREATE DATABASE sharding_db CHARACTER SET 'utf8';
+CREATE DATABASE sharding_db0 CHARACTER SET 'utf8';
+CREATE DATABASE sharding_db1 CHARACTER SET 'utf8';
+
 
 DROP TABLE IF EXISTS `t_order`;
 

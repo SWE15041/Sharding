@@ -1,13 +1,45 @@
 mode:
+  # 运行模式类型。可选配置：内存模式 Memory、单机模式 Standalone、集群模式 Cluster - 目前为单机模式
   type: Standalone
 
 dataSources:
-  ds:
+  ds_1:
     dataSourceClassName: com.alibaba.druid.pool.DruidDataSource
-    driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/sharding_db1?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sharding_db1?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
     username: root
     password: root
-
+rules:
+  - !SHARDING
+#    # 库的路由
+#    defaultDatabaseStrategy:
+#      standard:
+#        shardingColumn: order_id
+#        shardingAlgorithmName: database_inline
+    # 表的路由
+    tables:
+      t_order:
+        actualDataNodes: ds_1.t_order_${0..1}
+        tableStrategy:
+          standard:
+            shardingColumn: order_id
+            shardingAlgorithmName: order_inline
+        keyGenerateStrategy: # Key generator strategy
+          column: id
+          keyGeneratorName: snowflake
+    # 路由算法
+    shardingAlgorithms:
+      # 库-路由算法 2是两个库，库的数量。库的数量用哈希模2来计算。
+#      database_inline:
+#        type: INLINE
+#        props:
+#          algorithm-expression: ds_1
+      order_inline:
+        type: INLINE
+        props:
+          algorithm-expression: t_order_${order_id % 2}
+    keyGenerators:
+      snowflake:
+        type: SNOWFLAKE
 props:
   sql-show: true

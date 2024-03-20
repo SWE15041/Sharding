@@ -49,4 +49,3 @@ rules:
         type: SNOWFLAKE
 props:
   sql-show: true
-#  sql-simple: true

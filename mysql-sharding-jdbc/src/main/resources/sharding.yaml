@@ -10,35 +10,35 @@ dataSources:
     password: root
 rules:
   - !SHARDING
-#    # 库的路由
-#    defaultDatabaseStrategy:
-#      standard:
-#        shardingColumn: id
-#        shardingAlgorithmName: database_inline
+    #    # 库的路由
+    #    defaultDatabaseStrategy:
+    #      standard:
+    #        shardingColumn: id
+    #        shardingAlgorithmName: database_inline
     # 表的路由
     tables:
       t_order:
-        actualDataNodes: ds_1.t_order_0
-#        databaseStrategy:
-#          standard: # For single sharding column scenario
-#            shardingColumn: id
-#            shardingAlgorithmName: database_inline
+        actualDataNodes: ds_1.t_order_1
+        #        databaseStrategy:
+        #          standard: # For single sharding column scenario
+        #            shardingColumn: id
+        #            shardingAlgorithmName: database_inline
         keyGenerateStrategy: # Key generator strategy
           column: id
           keyGeneratorName: snowflake
-#        tableStrategy:
-#          standard:
-#            shardingColumn: id
-#            shardingAlgorithmName: order_inline
+    #        tableStrategy:
+    #          standard:
+    #            shardingColumn: id
+    #            shardingAlgorithmName: order_inline
     shardingAlgorithms:
-#      database_inline:
-#        type: INLINE
-#        props:
-#          algorithm-expression: ds_1
-#      order_inline:
-#        type: INLINE
-#        props:
-#          algorithm-expression: t_order_0
+    #      database_inline:
+    #        type: INLINE
+    #        props:
+    #          algorithm-expression: ds_1
+    #      order_inline:
+    #        type: INLINE
+    #        props:
+    #          algorithm-expression: t_order_0
     keyGenerators:
       snowflake:
         type: SNOWFLAKE

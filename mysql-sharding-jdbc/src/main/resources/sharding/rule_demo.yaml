@@ -1,3 +1,26 @@
+mode:
+  type: Standalone
+  repository:
+    type: # 持久化仓库类型
+    props: # 持久化仓库所需属性
+      foo_key: foo_value
+      bar_key: bar_value
+
+dataSources:
+  ds_1:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    jdbcUrl: jdbc:mysql://localhost:3306/ds_1
+    username: root
+    password:
+  ds_2:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    jdbcUrl: jdbc:mysql://localhost:3306/ds_2
+    username: root
+    password:
+  # 配置其他数据源
+
 rules:
   - !SHARDING
     tables: # Sharding table configuration
