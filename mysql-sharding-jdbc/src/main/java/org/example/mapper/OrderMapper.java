@@ -11,12 +11,5 @@ import java.util.List;
  */
 @Mapper
 public interface OrderMapper extends BaseMapper<Order> {
-
-    void add(Order order);
-
-    List<Order> listAll();
-
-    Order queryByOrderId(Long orderId);
-
     List<Order> listByUserId(Long userId);
 }

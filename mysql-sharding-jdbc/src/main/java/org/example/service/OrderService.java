@@ -9,7 +9,9 @@ import java.util.List;
  */
 public interface OrderService {
 
-    Order add(Order order);
+    Order save(Order order);
+
+    Order update(Long id, Order order);
 
     List<Order> listByUserId(Long userId);
 }

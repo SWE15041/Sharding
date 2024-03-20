@@ -4,7 +4,7 @@ import org.example.domain.Order;
 import org.example.service.OrderService;
 import org.example.web.vo.OrderVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,8 +24,13 @@ public class OrderController {
     OrderService orderService;
 
     @PostMapping
-    public Order add(@RequestBody Order order) {
-        return orderService.add(order);
+    public Order save(@RequestBody Order order) {
+        return orderService.save(order);
+    }
+
+    @PutMapping("/{id}")
+    public Order update(@PathVariable("id") Long id, @RequestBody Order order) {
+        return orderService.update(id, order);
     }
 
     @PutMapping

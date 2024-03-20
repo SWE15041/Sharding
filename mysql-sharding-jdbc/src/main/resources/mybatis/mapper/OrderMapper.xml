@@ -2,30 +2,43 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.example.mapper.OrderMapper">
-    <sql id="ColumnList">
-        id,user_id,order_id,user_name
-    </sql>
+<!--    <sql id="ColumnList">-->
+<!--        id,user_id,order_id,user_name-->
+<!--    </sql>-->
 
-    <insert id="add" parameterType="org.example.domain.Order">
-        INSERT INTO t_order(user_id,order_id,user_name)
-        VALUES
-        (#{userId}, #{orderId}, #{userName} )
-    </insert>
+<!--    <insert id="add" parameterType="org.example.domain.Order">-->
+<!--        INSERT INTO t_order(user_id,order_id,user_name)-->
+<!--        VALUES-->
+<!--        (#{userId}, #{orderId}, #{userName} )-->
+<!--    </insert>-->
 
-    <select id="listAll" resultType="org.example.domain.Order">
-        select
-        <include refid="ColumnList"/>
-        from t_order
-    </select>
+<!--    <select id="listAll" resultType="org.example.domain.Order">-->
+<!--        select-->
+<!--        <include refid="ColumnList"/>-->
+<!--        from t_order-->
+<!--    </select>-->
 
-    <select id="queryByOrderId" parameterType="Long" resultType="org.example.domain.Order">
+<!--    <select id="queryByOrderId" parameterType="Long" resultType="org.example.domain.Order">-->
+<!--        select-->
+<!--        t.id as id,-->
+<!--        t.user_id as userId,-->
+<!--        t.order_id as orderId,-->
+<!--        t.user_name as userName-->
+<!--        from t_order t-->
+<!--        where t.order_id=#{orderId}-->
+<!--    </select>-->
+
+    <select id="listByUserId" parameterType="Long" resultType="HashMap">
         select
         t.id as id,
         t.user_id as userId,
         t.order_id as orderId,
-        t.user_name as userName
+        t.user_name as userName,
+        t.total_amount as totalAmount,
+        DATE_FORMAT( t.pay_time,'%y-%m-%d %h:%m:%s') as payTime,
+        t.payment_method
         from t_order t
-        where t.order_id=#{orderId}
+        where t.user_id=#{userId}
     </select>
 
     <select id="listByUserId" parameterType="Long" resultType="HashMap">
