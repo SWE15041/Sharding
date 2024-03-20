@@ -10,9 +10,9 @@ import java.util.List;
  * @author Yanni
  */
 @Mapper
-public interface OrderMapper  extends BaseMapper<Order> {
+public interface OrderMapper extends BaseMapper<Order> {
 
-    void add(Order order);
+//    Long add(Order order);
 
     List<Order> listAll();
 

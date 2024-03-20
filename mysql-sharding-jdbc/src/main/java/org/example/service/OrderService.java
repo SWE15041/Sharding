@@ -7,5 +7,5 @@ import org.example.domain.Order;
  */
 public interface OrderService {
 
-    void add(Order order);
+    Order add(Order order);
 }
