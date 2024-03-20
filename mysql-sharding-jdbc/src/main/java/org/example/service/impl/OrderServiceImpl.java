@@ -6,6 +6,8 @@ import org.example.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author Yanni
  */
@@ -16,7 +18,12 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order add(Order order) {
-         orderMapper.insert(order);
+        orderMapper.insert(order);
         return order;
+    }
+
+    @Override
+    public List<Order> listByUserId(Long userId) {
+        return orderMapper.listByUserId(userId);
     }
 }

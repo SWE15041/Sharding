@@ -12,9 +12,11 @@ import java.util.List;
 @Mapper
 public interface OrderMapper extends BaseMapper<Order> {
 
-//    Long add(Order order);
+    void add(Order order);
 
     List<Order> listAll();
 
-    Order queryByOrderId(String orderId);
+    Order queryByOrderId(Long orderId);
+
+    List<Order> listByUserId(Long userId);
 }

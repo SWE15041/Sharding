@@ -28,4 +28,14 @@
         where t.order_id=#{orderId}
     </select>
 
+    <select id="listByUserId" parameterType="Long" resultType="HashMap">
+        select
+        t.id as id,
+        t.user_id as userId,
+        t.order_id as orderId,
+        t.user_name as userName
+        from t_order t
+        where t.user_id=#{userId}
+    </select>
+
 </mapper>
