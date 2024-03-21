@@ -30,7 +30,7 @@ public class OrderServiceImpl implements OrderService {
         updateWrapper.set("total_amount", order.getTotalAmount()).eq("id", id);
         int rows = orderMapper.update(updateWrapper);
         System.out.println("更新影响的行数：" + rows);
-        return order;
+        return orderMapper.selectById(id);
     }
 
     @Override

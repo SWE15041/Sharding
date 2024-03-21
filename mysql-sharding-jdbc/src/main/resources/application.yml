@@ -11,8 +11,8 @@ spring:
     driver-class-name: org.apache.shardingsphere.driver.ShardingSphereDriver
 #    url: jdbc:shardingsphere:classpath:sharding.yaml
 #    url: jdbc:shardingsphere:classpath:sharding/config_sharding_db1_table1.yaml
-    url: jdbc:shardingsphere:classpath:sharding/config_sharding_db1_table2.yaml
-#    url: jdbc:shardingsphere:classpath:sharding/config_sharding_db2_table2.yaml
+#    url: jdbc:shardingsphere:classpath:sharding/config_sharding_db1_table2.yaml
+    url: jdbc:shardingsphere:classpath:sharding/config_sharding_db2_table2.yaml
 
 mybatis-plus:
   type-aliases-package: org.example.**.domain
