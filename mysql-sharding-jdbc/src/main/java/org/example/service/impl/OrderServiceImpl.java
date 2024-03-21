@@ -1,9 +1,10 @@
 package org.example.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.example.domain.Order;
 import org.example.mapper.OrderMapper;
 import org.example.service.OrderService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ import java.util.List;
 /**
  * @author Yanni
  */
-@Service("orderService")
+@Service()
 public class OrderServiceImpl implements OrderService {
     @Autowired
     OrderMapper orderMapper;
@@ -25,12 +26,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order update(Long id, Order order) {
-        // TODO: 2024/3/20 error
-        Order original = orderMapper.selectById(id);
-        BeanUtils.copyProperties(order, original);
-        original.setId(id);
-        orderMapper.updateById(original);
-        return original;
+        UpdateWrapper<Order> updateWrapper = Wrappers.update();
+        updateWrapper.set("total_amount", order.getTotalAmount()).eq("id", id);
+        int rows = orderMapper.update(updateWrapper);
+        System.out.println("更新影响的行数：" + rows);
+        return order;
     }
 
     @Override
