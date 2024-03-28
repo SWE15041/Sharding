@@ -1,0 +1,35 @@
+version: "3.8"
+services:
+  mysql_master:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+    image: mysql/mysql-server:8.0.23
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=dev
+      - MYSQL_PASSWORD=dev
+    ports:
+      - 3307:3306
+    volumes:
+      - "mysql_master_data:/var/lib/mysql"
+      - "./mysql_master_my.cnf:/etc/my.cnf"
+
+  mysql_slave:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+    image: mysql/mysql-server:8.0.23
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=dev
+      - MYSQL_PASSWORD=dev
+    ports:
+      - 3308:3306
+    volumes:
+      - "mysql_slave_data:/var/lib/mysql"
+      - "./mysql_slave_my.cnf:/etc/my.cnf"
+
+volumes:
+  mysql_master_data:
+  mysql_slave_data:

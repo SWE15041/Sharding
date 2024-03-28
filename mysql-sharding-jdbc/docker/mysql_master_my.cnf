@@ -1,0 +1,16 @@
+# 主库配置
+
+[mysqld]
+# 其他的配置项...
+
+# 启用二进制日志
+log-bin = mysql-bin
+# 设置二进制日志的唯一标识符
+server-id = 1
+
+# 指定要复制的数据库
+binlog-do-db = r1_w1_ds_master
+
+# 配置主库的字符集和排序规则
+character-set-server = utf8mb4
+collation-server = utf8mb4_general_ci
