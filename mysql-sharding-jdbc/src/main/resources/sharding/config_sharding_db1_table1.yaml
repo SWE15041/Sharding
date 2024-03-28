@@ -19,6 +19,8 @@ rules:
     tables:
       t_order:
         actualDataNodes: ds_1.t_order_1
+        databaseStrategy:
+          none:
 #        databaseStrategy:
 #          standard: # For single sharding column scenario
 #            shardingColumn: id
@@ -26,6 +28,8 @@ rules:
         keyGenerateStrategy: # Key generator strategy
           column: id
           keyGeneratorName: snowflake
+          tableStrategy:
+            none:
 #        tableStrategy:
 #          standard:
 #            shardingColumn: id

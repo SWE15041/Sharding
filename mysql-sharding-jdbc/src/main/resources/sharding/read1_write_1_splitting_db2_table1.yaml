@@ -1,0 +1,47 @@
+mode:
+  # 运行模式类型。可选配置：内存模式 Memory、单机模式 Standalone、集群模式 Cluster - 目前为单机模式
+  type: Standalone
+
+dataSources:
+  r1_w1_ds_master:
+    dataSourceClassName: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/r1_w1_ds_master?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=TRUE
+    username: root
+    password: root
+  r1_w1_ds_slave_0:
+    dataSourceClassName: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/r1_w1_ds_slave_0?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=TRUE
+    username: root
+    password: root
+rules:
+#  - !SHARDING
+#    # 表的路由
+#    tables:
+#      t_order:
+#        actualDataNodes: r1_w1_ds_master.t_order
+#        databaseStrategy:
+#          none:
+#        tableStrategy:
+#          none:
+#        keyGenerateStrategy: # Key generator strategy
+#          column: id
+#          keyGeneratorName: snowflake
+#    keyGenerators:
+#      snowflake:
+#        type: SNOWFLAKE
+  - !READWRITE_SPLITTING
+    dataSources:
+      readwrite_ds:
+        writeDataSourceName: r1_w1_ds_master
+        readDataSourceNames:
+          - r1_w1_ds_slave_0
+        transactionalReadQueryStrategy: PRIMARY
+        loadBalancerName: random
+    loadBalancers:
+      random:
+        type: RANDOM
+
+props:
+  sql-show: true
