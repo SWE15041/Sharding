@@ -9,7 +9,8 @@ log-bin = mysql-bin
 server-id = 1
 
 # 指定要复制的数据库
-binlog-do-db = r1_w1_ds_master
+binlog-do-db = r1_w1_ds_slave_0
+binlog-format=ROW
 
 # 配置主库的字符集和排序规则
 character-set-server = utf8mb4

@@ -1,8 +1,10 @@
 package org.example.web.controller;
 
+import com.github.pagehelper.PageInfo;
 import org.example.domain.Order;
 import org.example.service.OrderService;
 import org.example.web.vo.OrderVO;
+import org.example.web.vo.QueryOrderRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +25,12 @@ public class OrderController {
     @Autowired
     OrderService orderService;
 
+    @PutMapping
+    public PageInfo<Order> query(@RequestBody QueryOrderRequest req) {
+        return orderService.query(req);
+    }
+
+
     @PostMapping
     public Order save(@RequestBody Order order) {
         return orderService.save(order);
@@ -33,7 +41,7 @@ public class OrderController {
         return orderService.update(id, order);
     }
 
-    @PutMapping
+    @PutMapping("/list")
     @ResponseBody
     public List<Order> list(@RequestBody OrderVO vo) {
         return orderService.listByUserId(vo.userId);

@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.ToString;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -15,7 +17,10 @@ import java.time.LocalDateTime;
 @TableName("t_order")
 @Data
 @ToString
-public class Order {
+public class Order implements Serializable {
+    @Serial
+    private static final long serialVersionUID = -7514957040261638055L;
+
     @TableId(type = IdType.AUTO)
     private Long id;
     private Long orderId;
